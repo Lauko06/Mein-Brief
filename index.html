@@ -3,45 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geschützte Nachricht</title>
+    <title>Eine Überraschung für dich</title>
     <style>
-        body { background-color: #fdfcf0; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: 'Times New Roman', serif; }
+        body { 
+            background-color: #fdfcf0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            font-family: 'Times New Roman', serif; 
+        }
         
         /* Passwort-Bereich */
-        #login { text-align: center; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 200px; }
-        button { padding: 10px 20px; background: #8b0000; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px; }
+        #login { text-align: center; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        input { padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; width: 220px; outline: none; }
+        button { padding: 12px 25px; background: #8b0000; color: white; border: none; border-radius: 6px; cursor: pointer; margin-left: 5px; font-weight: bold; }
 
-        /* Der eigentliche Brief (zuerst versteckt) */
-        #brief-content { display: none; max-width: 500px; background: white; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 8px solid #8b0000; }
-        h1 { color: #2c3e50; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        p { font-size: 18px; color: #444; line-height: 1.8; }
-        .sign { margin-top: 50px; font-family: cursive; font-size: 20px; color: #8b0000; }
+        /* Der Brief (mit sanfter Animation) */
+        #brief-content { 
+            display: none; 
+            max-width: 500px; 
+            background: white; 
+            padding: 40px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+            border-top: 10px solid #8b0000; 
+            border-radius: 4px;
+            animation: fadeIn 1.5s ease; /* Macht den Brief-Einstieg weicher */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { color: #2c3e50; border-bottom: 1px solid #eee; padding-bottom: 15px; font-size: 26px; }
+        p { font-size: 19px; color: #333; line-height: 1.8; margin-bottom: 20px; }
+        .sign { margin-top: 50px; font-family: cursive; font-size: 24px; color: #8b0000; text-align: right; }
+        
+        /* Detail: Ein schwebendes Herz */
+        .heart { display: inline-block; animation: heartBeat 2s infinite; color: #8b0000; }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
 
     <div id="login">
-        <h3>Bitte Passwort eingeben</h3>
+        <h3>Bitte Passwort eingeben <span class="heart">❤️</span></h3>
         <input type="password" id="passInput" placeholder="Passwort...">
         <button onclick="checkPass()">Öffnen</button>
-        <p id="error" style="color: red; display: none; font-size: 14px;">Falsches Passwort!!</p>
+        <p id="error" style="color: red; display: none; font-size: 14px; margin-top: 15px;">Falsches Passwort!</p>
     </div>
 
     <div id="brief-content">
-        <h1>Eine Nachricht für dich</h1>
-        <p>Hallo,</p>
-        <p>dieser Text ist nun durch ein Passwort geschützt. Nur wer das Passwort kennt, kann diesen Brief lesen.</p>
-        <div class="sign">Alles Liebe</div>
+        <h1>Alles Gute zum Geburtstag <3</h1>
+        
+        <p>Hiii Süßmaus,</p>
+        
+        <p>also, das hier ist mal was komplett anderes als sonst, da ich das hier code und zum ersten Mal einen Server erstelle, hahahaha. Natürlich nicht komplett alleine, sondern beim Restcode etwas mit der Hilfe von Gemini, da ich noch nicht so intelligent bin. 😉</p>
+        
+        <p>Also alles, alles Gute zum 20. Geburtstag! Wir haben jetzt endlich beide die 2 vorne, was sich schon etwas komisch anfühlt meiner Meinung nach, hahahah. Ich hoffe, du hast heute einen schönen Tag und freust dich über mein kleines Geschenk, bevor die große Überraschung kommt. :)</p>
+        
+        <p>Dazu ein kleiner Sneak Peek: Ich würde dir empfehlen, bei der ersten Aktivität etwas sportlichere Klamotten zu tragen, jedoch auch schöne Klamotten zum Wechseln für die nächste Aktivität mitzunehmen (diese wird bombastisch lecker 🤫) ❤️.</p>
+        
+        <p>Aber leider musst du dich noch etwas dafür gedulden, tut mir sehr leid. :( Ich liebe dich über alles und bin unglaublich glücklich, mit dir meine Zeit zu verbringen, da diese immer viel zu lustig und schön ist. Danke für alles, meine Traumfrau ❤️.</p>
+        
+        <div class="sign">Laurin</div>
     </div>
 
     <script>
         function checkPass() {
-            // HIER DEIN PASSWORT EINTRAGEN:
             var password = "EMELY"; 
-            
             var input = document.getElementById("passInput").value;
-            if (input === password) {
+            
+            // Passwort wird in Großbuchstaben geprüft, falls sie es klein schreibt
+            if (input.toUpperCase() === password) {
                 document.getElementById("login").style.display = "none";
                 document.getElementById("brief-content").style.display = "block";
             } else {
@@ -49,7 +91,6 @@
             }
         }
         
-        // Erlaubt das Drücken der Enter-Taste
         document.getElementById("passInput").addEventListener("keyup", function(event) {
             if (event.key === "Enter") { checkPass(); }
         });
